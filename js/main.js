@@ -76,7 +76,6 @@ if (numerosSection) {
 const produtosSection = document.querySelector('.produtos');
 const produtosSlides = document.querySelectorAll('.produtos__slide');
 const produtosDots = document.querySelectorAll('.produtos__dot');
-const produtosNextSection = document.querySelector('#sobre');
 
 if (produtosSection && produtosSlides.length) {
     let produtosCurrentIndex = 0;
@@ -99,10 +98,6 @@ if (produtosSection && produtosSlides.length) {
             gsap.set(produtosSlides[0], { opacity: 1, rotateY: 0 });
             produtosSlides.forEach((slide, i) => slide.classList.toggle('is-active', i === 0));
             produtosDots.forEach((dot, i) => dot.classList.toggle('is-active', i === 0));
-
-            if (produtosNextSection) {
-                gsap.set(produtosNextSection, { y: 60, opacity: 0 });
-            }
 
             // Timeline única, dona de TODAS as trocas de slide (nenhum tween discreto
             // separado disputa propriedades com ela). Isso garante reversibilidade
@@ -142,31 +137,10 @@ if (produtosSection && produtosSlides.length) {
                 }
             });
 
-            // Trigger independente (sem pin) só para o parallax de entrada da #sobre,
-            // com sua própria suavização (scrub: 1.5) sem afetar a liberação do pin.
-            let sobreTrigger = null;
-            if (produtosNextSection) {
-                const sobreTl = gsap.timeline({ paused: true, defaults: { ease: 'none' } })
-                    .to({}, { duration: lastIndex })
-                    .fromTo(produtosNextSection, { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 1 }, lastIndex);
-
-                sobreTrigger = ScrollTrigger.create({
-                    trigger: produtosSection,
-                    start: 'top top',
-                    end: () => '+=' + (window.innerHeight * totalUnits),
-                    scrub: 1.5,
-                    animation: sobreTl
-                });
-            }
-
             return () => {
                 produtosTrigger.kill();
                 produtosExitTl.kill();
-                if (sobreTrigger) sobreTrigger.kill();
                 gsap.set(produtosSlides, { clearProps: 'all' });
-                if (produtosNextSection) {
-                    gsap.set(produtosNextSection, { clearProps: 'all' });
-                }
                 produtosCurrentIndex = 0;
                 produtosSlides.forEach((slide, i) => slide.classList.toggle('is-active', i === 0));
                 produtosDots.forEach((dot, i) => dot.classList.toggle('is-active', i === 0));

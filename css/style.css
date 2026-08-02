@@ -382,7 +382,8 @@ button {
 /* ===== PRODUTOS ===== */
 .produtos {
     background-color: #F5F5F5;
-    padding: 60px 0;
+    padding: 60px 0 0;
+    overflow: hidden;
 }
 
 .produtos__container {
