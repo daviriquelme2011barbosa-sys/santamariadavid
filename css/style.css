@@ -485,6 +485,50 @@ button {
     display: none;
 }
 
+/* ===== SOBRE (placeholder) ===== */
+.sobre {
+    background-color: #1A1A1A;
+    color: var(--color-white);
+    padding: 100px 0;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+}
+
+.sobre .container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.sobre__tag {
+    display: inline-block;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.75rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    padding: 0.4rem 0.9rem;
+    border-radius: 3px;
+}
+
+.sobre__title {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 2.5rem;
+    line-height: 1.15;
+}
+
+.sobre__text {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
 /* ===== RESPONSIVO (mobile-first) ===== */
 @media (min-width: 768px) {
     .header__toggle {
