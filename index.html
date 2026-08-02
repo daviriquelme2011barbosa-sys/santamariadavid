@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal David Barbosa | Consultor Santa Maria Laticínios</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- GSAP + ScrollTrigger (cdnjs) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="header" id="header">
+        <div class="container header__container">
+            <a href="#inicio" class="header__logo">
+                <img src="assets/images/logo.png" alt="Santa Maria Laticínios" class="header__logo-img">
+                <span class="header__logo-text">Santa Maria Laticínios</span>
+            </a>
+
+            <button class="header__toggle" id="headerToggle" aria-label="Abrir menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav class="header__nav" id="headerNav">
+                <ul class="header__links">
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#produtos">Produtos</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+                <a href="https://wa.me/5511973426342?text=Ol%C3%A1%2C%20David!%20Quero%20saber%20mais%20sobre%20os%20produtos%20Santa%20Maria%20Laticínios."
+                   target="_blank" rel="noopener noreferrer" class="btn btn--cta header__cta">Falar com David</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="inicio">
+        <div class="container hero__container">
+            <div class="hero__content">
+                <span class="hero__tag">Direto da Fábrica • Minas Gerais</span>
+                <h1 class="hero__title">O Requeijão mais puro do mercado, na sua cozinha.</h1>
+                <p class="hero__text">Sou David Barbosa, vendedor direto da Fábrica Santa Maria Laticínios. Preço de fábrica, qualidade garantida.</p>
+                <ul class="hero__bullets">
+                    <li>Atendimento humanizado.</li>
+                    <li>Atendemos em todo estado de São Paulo.</li>
+                </ul>
+                <div class="hero__buttons">
+                    <a href="#produtos" class="btn btn--primary">Ver Produtos</a>
+                    <a href="https://wa.me/5511973426342?text=Ol%C3%A1%2C%20David!%20Quero%20saber%20mais%20sobre%20os%20produtos%20Santa%20Maria%20Laticínios."
+                       target="_blank" rel="noopener noreferrer" class="btn btn--outline">Falar com David</a>
+                </div>
+            </div>
+
+            <div class="hero__media">
+                <div class="hero__image-wrap">
+                    <img src="assets/images/david-hero.jpg" alt="David Barbosa" class="hero__image">
+                    <div class="hero__overlay"></div>
+                    <div class="hero__curtain"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== NÚMEROS ===== -->
+    <section class="numeros" id="numeros">
+        <div class="container numeros__grid">
+            <div class="numeros__card">
+                <span class="numeros__number" data-target="30" data-prefix="+">0</span>
+                <span class="numeros__label">Anos de tradição</span>
+            </div>
+            <div class="numeros__card">
+                <span class="numeros__number" data-target="200" data-prefix="+">0</span>
+                <span class="numeros__label">Cidades atendidas</span>
+            </div>
+            <div class="numeros__card">
+                <span class="numeros__number" data-target="8000" data-prefix="+">0</span>
+                <span class="numeros__label">Clientes satisfeitos</span>
+            </div>
+            <div class="numeros__card">
+                <span class="numeros__number" data-target="100" data-suffix="%">0</span>
+                <span class="numeros__label">Qualidade garantida</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PRODUTOS ===== -->
+    <section class="produtos" id="produtos">
+        <div class="produtos__pin-wrap">
+            <div class="container produtos__container">
+
+                <div class="produtos__slide is-active" data-index="0">
+                    <div class="produtos__text">
+                        <span class="produtos__tag">Destaque da linha</span>
+                        <h3 class="produtos__title">Requeijão Cremoso Premium</h3>
+                        <p class="produtos__desc">O mais puro do mercado. Sem amido, apenas 1,4g de gordura por porção. Estabilidade térmica ideal para pizzas, hambúrgueres e aplicações industriais.</p>
+                        <span class="produtos__pkg-label">Embalagens disponíveis</span>
+                        <div class="produtos__pills">
+                            <span class="produtos__pill">Balde 3,6kg</span>
+                            <span class="produtos__pill">Balde 4,6kg</span>
+                            <span class="produtos__pill">Bisnaga 1kg</span>
+                            <span class="produtos__pill">Bisnaga 1,8kg</span>
+                        </div>
+                    </div>
+                    <div class="produtos__media">
+                        <img src="assets/images/requeijao.png" alt="Requeijão Cremoso Premium" class="produtos__image">
+                    </div>
+                </div>
+
+                <div class="produtos__slide" data-index="1">
+                    <div class="produtos__text">
+                        <span class="produtos__tag">Food Service</span>
+                        <h3 class="produtos__title">Requeijão Sabor Cheddar</h3>
+                        <p class="produtos__desc">Cremosidade e sabor marcante de cheddar em cada porção. Perfeito para hambúrgueres artesanais e lanches gourmet.</p>
+                        <span class="produtos__pkg-label">Embalagens disponíveis</span>
+                        <div class="produtos__pills">
+                            <span class="produtos__pill">Bisnaga 1,5kg</span>
+                            <span class="produtos__pill">Bisnaga 1,8kg</span>
+                        </div>
+                    </div>
+                    <div class="produtos__media">
+                        <img src="assets/images/cheddar.png" alt="Requeijão Sabor Cheddar" class="produtos__image">
+                    </div>
+                </div>
+
+                <div class="produtos__slide" data-index="2">
+                    <div class="produtos__text">
+                        <span class="produtos__tag">Versátil</span>
+                        <h3 class="produtos__title">Cream Cheese</h3>
+                        <p class="produtos__desc">Textura suave e sabor delicado. Ideal para confeitaria, recheios, patês e aplicações em padarias e restaurantes.</p>
+                        <span class="produtos__pkg-label">Embalagens disponíveis</span>
+                        <div class="produtos__pills">
+                            <span class="produtos__pill">Balde 3,6kg</span>
+                            <span class="produtos__pill">Bisnaga 1,010kg</span>
+                        </div>
+                    </div>
+                    <div class="produtos__media">
+                        <img src="assets/images/cream-cheese.png" alt="Cream Cheese" class="produtos__image">
+                    </div>
+                </div>
+
+                <div class="produtos__slide" data-index="3">
+                    <div class="produtos__text">
+                        <span class="produtos__tag">Tradição Mineira</span>
+                        <h3 class="produtos__title">Doce de Leite</h3>
+                        <p class="produtos__desc">A doçura da tradição mineira em escala industrial. Cremoso, consistente e com sabor autêntico para confeitarias e padarias.</p>
+                        <span class="produtos__pkg-label">Embalagens disponíveis</span>
+                        <div class="produtos__pills">
+                            <span class="produtos__pill">Balde 4,1kg</span>
+                            <span class="produtos__pill">Bisnaga 1,2kg</span>
+                        </div>
+                    </div>
+                    <div class="produtos__media">
+                        <img src="assets/images/doce-de-leite.png" alt="Doce de Leite" class="produtos__image">
+                    </div>
+                </div>
+
+                <div class="produtos__dots">
+                    <span class="produtos__dot is-active"></span>
+                    <span class="produtos__dot"></span>
+                    <span class="produtos__dot"></span>
+                    <span class="produtos__dot"></span>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- JS -->
+    <script src="js/main.js"></script>
+</body>
+</html>
