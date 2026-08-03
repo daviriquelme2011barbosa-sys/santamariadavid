@@ -227,7 +227,22 @@ button {
     overflow: hidden;
 }
 
+/* Fallback mobile: .hero__media (coluna com a foto) fica display:none
+   abaixo de 992px, então a mesma foto entra como fundo da section para
+   o hero não ficar sem imagem nenhuma no celular. */
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../assets/images/david-hero.jpg');
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+}
+
 .hero__container {
+    position: relative;
+    z-index: 1;
     display: flex;
     flex-direction: column;
     gap: 3rem;
@@ -1033,6 +1048,10 @@ button {
 }
 
 @media (min-width: 992px) {
+    .hero::before {
+        display: none;
+    }
+
     .hero__container {
         flex-direction: row;
         align-items: center;

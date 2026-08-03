@@ -145,6 +145,26 @@ if (produtosSection && produtosSlides.length) {
                 produtosSlides.forEach((slide, i) => slide.classList.toggle('is-active', i === 0));
                 produtosDots.forEach((dot, i) => dot.classList.toggle('is-active', i === 0));
             };
+        },
+
+        // Sem pin nem rotação 3D abaixo de 992px: os slides já ficam
+        // empilhados via CSS (position: static), cada um mostrado por
+        // completo — aqui só entra um fade + translateY simples por card.
+        '(max-width: 991px)': function () {
+            gsap.set(produtosSlides, { opacity: 0, y: 30 });
+
+            const produtosBatch = ScrollTrigger.batch(produtosSlides, {
+                start: 'top 85%',
+                once: true,
+                onEnter: (batch) => {
+                    gsap.to(batch, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out', stagger: 0.15 });
+                }
+            });
+
+            return () => {
+                produtosBatch.forEach((trigger) => trigger.kill());
+                gsap.set(produtosSlides, { clearProps: 'all' });
+            };
         }
     });
 }
