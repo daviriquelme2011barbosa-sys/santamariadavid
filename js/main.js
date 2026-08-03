@@ -148,3 +148,251 @@ if (produtosSection && produtosSlides.length) {
         }
     });
 }
+
+/* ===== SOBRE (entrada + pulso do botão) ===== */
+const sobreSection = document.querySelector('.sobre');
+const sobreImage = document.querySelector('.sobre__image');
+const sobreContent = document.querySelector('.sobre__content');
+const sobreCardsWrap = document.querySelector('.sobre__cards');
+const sobreCards = document.querySelectorAll('.sobre__card');
+const sobreCta = document.querySelector('.sobre__cta');
+
+if (sobreSection) {
+    gsap.set(sobreImage, { opacity: 0, x: -50 });
+    gsap.set(sobreContent, { opacity: 0, x: 50 });
+
+    ScrollTrigger.create({
+        trigger: sobreSection,
+        start: 'top 75%',
+        once: true,
+        onEnter: () => {
+            gsap.to(sobreImage, { opacity: 1, x: 0, duration: 0.8, ease: 'power2.out' });
+            gsap.to(sobreContent, { opacity: 1, x: 0, duration: 0.8, ease: 'power2.out' });
+        }
+    });
+
+    if (sobreCardsWrap && sobreCards.length) {
+        gsap.set(sobreCards, { opacity: 0, x: -80 });
+
+        ScrollTrigger.create({
+            trigger: sobreCardsWrap,
+            start: 'top 85%',
+            once: true,
+            onEnter: () => {
+                gsap.to(sobreCards, { opacity: 1, x: 0, duration: 0.9, stagger: 0.2, ease: 'power2.out' });
+            }
+        });
+    }
+
+    if (sobreCta) {
+        gsap.to(sobreCta, {
+            scale: 1.03,
+            duration: 0.8,
+            ease: 'power1.inOut',
+            yoyo: true,
+            repeat: -1
+        });
+    }
+}
+
+/* ===== GALERIA (carrossel 3D automático) ===== */
+const galeriaSection = document.querySelector('.galeria');
+const galeriaCarousel = document.getElementById('galeriaCarousel');
+const galeriaTrack = document.getElementById('galeriaTrack');
+
+if (galeriaSection && galeriaCarousel && galeriaTrack) {
+    // duplica o conjunto de fotos para permitir o loop infinito sem emenda
+    galeriaTrack.insertAdjacentHTML('beforeend', galeriaTrack.innerHTML);
+    const galeriaCards = galeriaTrack.querySelectorAll('.galeria__card');
+
+    const galeriaTween = gsap.to(galeriaTrack, {
+        xPercent: -50,
+        duration: (galeriaCards.length / 2) * 4,
+        ease: 'none',
+        repeat: -1
+    });
+
+    galeriaCarousel.addEventListener('mouseenter', () => galeriaTween.pause());
+    galeriaCarousel.addEventListener('mouseleave', () => galeriaTween.play());
+
+    // arraste/swipe (mouse e touch unificados via Pointer Events) — a
+    // barra de progresso da própria tween é escrubada durante o arraste,
+    // então não há dois sistemas (autoplay x arraste) disputando o transform.
+    let isDragging = false;
+    let dragStartX = 0;
+    let dragDistance = 0;
+    let progressAtDragStart = 0;
+
+    galeriaCarousel.addEventListener('pointerdown', (e) => {
+        isDragging = true;
+        dragDistance = 0;
+        dragStartX = e.clientX;
+        progressAtDragStart = galeriaTween.progress();
+        galeriaTween.pause();
+        galeriaCarousel.setPointerCapture(e.pointerId);
+    });
+
+    galeriaCarousel.addEventListener('pointermove', (e) => {
+        if (!isDragging) return;
+        const deltaX = e.clientX - dragStartX;
+        dragDistance = Math.abs(deltaX);
+        const trackHalfWidth = galeriaTrack.scrollWidth / 2;
+        const deltaProgress = deltaX / trackHalfWidth;
+        let newProgress = (progressAtDragStart - deltaProgress) % 1;
+        if (newProgress < 0) newProgress += 1;
+        galeriaTween.progress(newProgress);
+    });
+
+    function endGaleriaDrag(e) {
+        if (!isDragging) return;
+        isDragging = false;
+        galeriaTween.play();
+
+        // toque sem arrasto real = tap: alterna o card tocado (mobile)
+        if (dragDistance < 6) {
+            const card = e.target.closest('.galeria__card');
+            if (card) {
+                const wasActive = card.classList.contains('is-active');
+                galeriaCards.forEach((c) => c.classList.remove('is-active'));
+                if (!wasActive) card.classList.add('is-active');
+            }
+        }
+    }
+
+    galeriaCarousel.addEventListener('pointerup', endGaleriaDrag);
+    galeriaCarousel.addEventListener('pointercancel', endGaleriaDrag);
+
+    /* ===== entrada da seção ===== */
+    const galeriaTag = galeriaSection.querySelector('.galeria__tag');
+    const galeriaTitle = galeriaSection.querySelector('.galeria__title');
+    const galeriaSubtitle = galeriaSection.querySelector('.galeria__subtitle');
+
+    gsap.set([galeriaTag, galeriaTitle, galeriaSubtitle], { opacity: 0, y: 40 });
+    gsap.set(galeriaCarousel, { opacity: 0, scale: 0.95 });
+
+    ScrollTrigger.create({
+        trigger: galeriaSection,
+        start: 'top 75%',
+        once: true,
+        onEnter: () => {
+            gsap.to([galeriaTag, galeriaTitle, galeriaSubtitle], {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                ease: 'power2.out',
+                stagger: 0.15
+            });
+            gsap.to(galeriaCarousel, {
+                opacity: 1,
+                scale: 1,
+                duration: 1,
+                ease: 'power2.out'
+            });
+        }
+    });
+}
+
+/* ===== CONTATO (formulário de orçamento via WhatsApp) ===== */
+const contatoSection = document.querySelector('.contato');
+const contatoInfo = document.querySelector('.contato__info');
+const contatoFormWrap = document.querySelector('.contato__form-wrap');
+const contatoForm = document.getElementById('contatoForm');
+
+if (contatoSection) {
+    gsap.set(contatoInfo, { opacity: 0, x: -40 });
+    gsap.set(contatoFormWrap, { opacity: 0, x: 40 });
+
+    ScrollTrigger.create({
+        trigger: contatoSection,
+        start: 'top 75%',
+        once: true,
+        onEnter: () => {
+            gsap.to(contatoInfo, { opacity: 1, x: 0, duration: 0.9, ease: 'power2.out' });
+            gsap.to(contatoFormWrap, { opacity: 1, x: 0, duration: 0.9, ease: 'power2.out' });
+        }
+    });
+}
+
+if (contatoForm) {
+    contatoForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        if (!contatoForm.reportValidity()) return;
+
+        const nome = contatoForm.nome.value.trim();
+        const whatsapp = contatoForm.whatsapp.value.trim();
+        const negocio = contatoForm.negocio.value;
+        const produto = contatoForm.produto.value;
+        const mensagem = contatoForm.mensagem.value.trim();
+
+        const linhas = [
+            `Olá, David! Meu nome é ${nome}.`,
+            `WhatsApp para contato: ${whatsapp}`,
+            `Tipo de negócio: ${negocio}`,
+            `Produto de interesse: ${produto}`
+        ];
+
+        if (mensagem) {
+            linhas.push(`Mensagem: ${mensagem}`);
+        }
+
+        const texto = encodeURIComponent(linhas.join('\n'));
+        window.open(`https://wa.me/5511973426342?text=${texto}`, '_blank', 'noopener');
+    });
+}
+
+/* ===== FOOTER (entrada das colunas) ===== */
+const footerSection = document.querySelector('.footer');
+const footerCols = document.querySelectorAll('.footer__col');
+
+if (footerSection && footerCols.length) {
+    gsap.set(footerCols, { opacity: 0, y: 30 });
+
+    ScrollTrigger.create({
+        trigger: footerSection,
+        start: 'top 90%',
+        once: true,
+        onEnter: () => {
+            gsap.to(footerCols, { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out', stagger: 0.2 });
+        }
+    });
+}
+
+/* ===== SCROLL REVEAL GLOBAL =====
+   Entrada padrão (fade + translateY) para tags, títulos, parágrafos,
+   botões, cards e imagens em qualquer seção — atual ou futura.
+   Hero, números, produtos, galeria, contato e footer já têm suas
+   próprias animações de entrada (scroll-jack, contagem, timelines
+   dedicadas) e o header é fixo, sempre visível: nenhum deles deve
+   ganhar um segundo estado "opacity: 0" que nunca seria revertido
+   por este sistema. */
+(function initScrollReveal() {
+    const EXCLUDED_ROOTS = '.header, .hero, .numeros, .produtos, .galeria, .contato, .footer';
+
+    const alreadyAnimated = new Set(
+        [sobreImage, sobreContent, sobreCta, ...sobreCards].filter(Boolean)
+    );
+
+    const revealTargets = gsap.utils
+        .toArray('[class*="__tag"], h1, h2, h3, p, .btn, [class*="__card"], img, [data-reveal]')
+        .filter((el) => !alreadyAnimated.has(el) && !el.closest(EXCLUDED_ROOTS));
+
+    if (!revealTargets.length) return;
+
+    gsap.set(revealTargets, { opacity: 0, y: 40 });
+
+    ScrollTrigger.batch(revealTargets, {
+        start: 'top 80%',
+        once: true,
+        interval: 0.1,
+        onEnter: (batch) => {
+            gsap.to(batch, {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: 'power2.out',
+                stagger: 0.15
+            });
+        }
+    });
+})();
