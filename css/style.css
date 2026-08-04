@@ -2,9 +2,13 @@
 :root {
     --color-bg: #1A1A1A;
     --color-primary: #8B1A1A;
+    --color-primary-hover: #6f1414;
+    --color-primary-a30: rgba(139, 26, 26, 0.3);
+    --color-primary-a40: rgba(139, 26, 26, 0.4);
     --color-white: #FFFFFF;
     --color-white-soft: rgba(255, 255, 255, 0.8);
     --color-muted: #CCCCCC;
+    --color-gray: #AAAAAA;
 
     --font-heading: 'Playfair Display', serif;
     --font-body: 'Poppins', sans-serif;
@@ -84,7 +88,7 @@ button {
 }
 
 .btn--primary:hover {
-    background-color: #6f1414;
+    background-color: var(--color-primary-hover);
 }
 
 .btn--outline {
@@ -106,7 +110,7 @@ button {
 }
 
 .btn--cta:hover {
-    background-color: #6f1414;
+    background-color: var(--color-primary-hover);
 }
 
 /* ===== HEADER ===== */
@@ -446,7 +450,7 @@ button {
     font-weight: 700;
     font-size: 2.5rem;
     line-height: 1.15;
-    color: #1A1A1A;
+    color: var(--color-bg);
 }
 
 .produtos__desc {
@@ -503,7 +507,7 @@ button {
 
 /* ===== SOBRE ===== */
 .sobre {
-    background-color: #1A1A1A;
+    background-color: var(--color-bg);
     color: var(--color-white);
     padding: 100px 0;
 }
@@ -566,7 +570,7 @@ button {
 }
 
 .sobre__text--secondary {
-    color: #AAAAAA;
+    color: var(--color-gray);
 }
 
 .sobre__cards {
@@ -585,7 +589,7 @@ button {
     text-align: center;
     gap: 0.5rem;
     background-color: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(139, 26, 26, 0.3);
+    border: 1px solid var(--color-primary-a30);
     border-radius: 8px;
     padding: 1.25rem 1rem;
     color: var(--color-white);
@@ -602,7 +606,7 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #8B1A1A;
+    color: var(--color-primary);
 }
 
 .sobre__card-icon svg {
@@ -627,14 +631,14 @@ button {
 }
 
 .sobre__cta-note {
-    color: #AAAAAA;
+    color: var(--color-gray);
     font-size: 0.8rem;
     font-family: var(--font-body);
 }
 
 /* ===== GALERIA ===== */
 .galeria {
-    background-color: #1A1A1A;
+    background-color: var(--color-bg);
     padding: 100px 0;
     overflow: hidden;
 }
@@ -702,7 +706,7 @@ button {
     height: 420px;
     border-radius: 16px;
     overflow: hidden;
-    border: 1px solid rgba(139, 26, 26, 0.4);
+    border: 1px solid var(--color-primary-a40);
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
     transition: all 0.4s ease;
 }
@@ -724,7 +728,7 @@ button {
 
 /* ===== CONTATO ===== */
 .contato {
-    background-color: #1A1A1A;
+    background-color: var(--color-bg);
     padding: 100px 0;
 }
 
@@ -793,7 +797,7 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #8B1A1A;
+    color: var(--color-primary);
 }
 
 .contato__card-icon svg {
@@ -813,7 +817,7 @@ button {
     font-size: 0.75rem;
     letter-spacing: 0.03em;
     text-transform: uppercase;
-    color: #AAAAAA;
+    color: var(--color-gray);
 }
 
 .contato__card-value {
@@ -847,7 +851,7 @@ button {
     font-family: var(--font-body);
     font-weight: 600;
     font-size: 0.9rem;
-    color: #1A1A1A;
+    color: var(--color-bg);
 }
 
 .contato__field input,
@@ -855,7 +859,7 @@ button {
 .contato__field textarea {
     font-family: var(--font-body);
     font-size: 0.95rem;
-    color: #1A1A1A;
+    color: var(--color-bg);
     background-color: #FFFFFF;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -866,7 +870,7 @@ button {
 .contato__field input:focus,
 .contato__field select:focus,
 .contato__field textarea:focus {
-    border-color: #8B1A1A;
+    border-color: var(--color-primary);
     outline: none;
 }
 
@@ -881,14 +885,14 @@ button {
 }
 
 .contato__submit {
-    background-color: #8B1A1A;
+    background-color: var(--color-primary);
     color: var(--color-white);
     width: 100%;
     margin-top: 0.5rem;
 }
 
 .contato__submit:hover {
-    background-color: #6f1414;
+    background-color: var(--color-primary-hover);
 }
 
 /* ===== FOOTER ===== */
@@ -920,7 +924,7 @@ button {
     font-weight: 400;
     font-size: 0.95rem;
     line-height: 1.7;
-    color: #AAAAAA;
+    color: var(--color-gray);
     max-width: 340px;
 }
 
@@ -937,8 +941,8 @@ button {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    border: 1px solid rgba(139, 26, 26, 0.4);
-    color: #8B1A1A;
+    border: 1px solid var(--color-primary-a40);
+    color: var(--color-primary);
     transition: var(--transition-fast);
 }
 
@@ -948,7 +952,7 @@ button {
 }
 
 .footer__social:hover {
-    background-color: #8B1A1A;
+    background-color: var(--color-primary);
     color: var(--color-white);
 }
 
@@ -968,12 +972,12 @@ button {
 .footer__links a {
     font-family: var(--font-body);
     font-size: 0.95rem;
-    color: #AAAAAA;
+    color: var(--color-gray);
     transition: color var(--transition-fast);
 }
 
 .footer__links a:hover {
-    color: #8B1A1A;
+    color: var(--color-primary);
 }
 
 .footer__contact-list {
@@ -985,7 +989,7 @@ button {
 .footer__contact-list li {
     font-family: var(--font-body);
     font-size: 0.95rem;
-    color: #AAAAAA;
+    color: var(--color-gray);
 }
 
 .footer__bottom {
@@ -1129,7 +1133,7 @@ button {
         width: 10px;
         height: 10px;
         border-radius: 50%;
-        background-color: rgba(139, 26, 26, 0.3);
+        background-color: var(--color-primary-a30);
         transition: background-color var(--transition-fast);
     }
 
